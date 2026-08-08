@@ -25,7 +25,7 @@ extra_javascript:
 
 nav:
   - 首页: index.md
-  - 题目 A - 为整除 5 或 13 的数求和:
+  - 题目 A - 找出 5 或 13 的倍数再求和:
     - 问题: problem-a/question.md
     - 题解: problem-a/answer.md
   - 题目 B - 递归取代循环:
