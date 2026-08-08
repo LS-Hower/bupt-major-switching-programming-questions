@@ -25,3 +25,24 @@ markdown_extensions:
 
 nav:
   - 首页: index.md
+  - 题目 A - 为整除 5 或 13 的数求和:
+    - 问题: problem-a/question.md
+    - 题解: problem-a/answer.md
+  - 题目 B - 递归取代循环:
+    - 问题: problem-b/question.md
+    - 题解: problem-b/answer.md
+  - 题目 C - 找出素数再排序:
+    - 问题: problem-c/question.md
+    - 题解: problem-c/answer.md
+  - 题目 D - 为足球队伍排序:
+    - 问题: problem-d/question.md
+    - 题解: problem-d/answer.md
+  - 题目 E - 幻方:
+    - 问题: problem-e/question.md
+    - 题解: problem-e/answer.md
+  - 题目 F - 以不同方式遍历二叉树:
+    - 问题: problem-f/question.md
+    - 题解: problem-f/answer.md
+  - 题目 G - 最大化结点距离和:
+    - 问题: problem-g/question.md
+    - 题解: problem-g/answer.md
