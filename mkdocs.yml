@@ -1,0 +1,27 @@
+site_name: 北邮 2025 年春计科转专业机试题
+
+site_url: https://LS-Hower.github.io/bupt-major-switching-programming-questions/
+
+theme:
+  name: material
+  features:
+    - content.code.copy
+    - content.code.select
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+#  - pymdownx.arithmatex:
+#      generic: true
+
+#extra_javascript:
+#  - javascripts/mathjax.js
+#  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - 首页: index.md
