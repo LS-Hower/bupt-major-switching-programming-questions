@@ -14,6 +14,7 @@
 int is_prime(int n)
 {
     if (n < 2) {
+        // 小于 2，一定不是素数
         return 0;
     }
 
