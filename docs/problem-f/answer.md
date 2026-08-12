@@ -50,13 +50,133 @@
 
 除了用一个索引对来表示子数组而避免真的几乎复制整个数组外，这里还有一个优化点。我们有一个“查找根在中序序列中的索引值”操作，如果每次都线性查线，那么最坏情况下代码时间会退化到平方时间 $\mathcal{O}(n^{2})$ 。解决起来也不难，提前用散列表记录每一个值的位置即可，这样最坏情况也只是线性时间 $\mathcal{O}(n)$ 。
 
-接下来的问题是如何对一个二叉树做层序遍历。这等同于做一个广度优先搜索算法，需要使用队列这一数据结构。
+C 语言标准库没有散列表。不过有一个好消息，这道题的数据范围足够小，结点值都在 $[-1000, 1000]$ 之间。因此可以直接用数组充当散列表，数组大小 `2001` 即可。
+
+接下来的问题是如何对一个二叉树做层序遍历。这等同于做一个广度优先搜索算法，需要使用队列这一数据结构。C 语言标准库当然也没有队列。不过，因为 $n \le 1000$ ，所以也能用数组模拟。甚至不需要搞循环队列。
 
 ### 完整代码
 
 C：
 
-TODO
+```c
+#include <assert.h>
+#include <stddef.h>
+#include <stdio.h>
+
+typedef struct tree_node_s tree_node_t;
+
+struct tree_node_s {
+    int value;
+    tree_node_t* left;
+    tree_node_t* right;
+};
+
+tree_node_t nodes[1000];
+size_t node_count = 0;
+
+tree_node_t* make_node(int value)
+{
+    tree_node_t* const node = &nodes[node_count];
+    ++node_count;
+    node->value = value;
+    node->left = NULL;
+    node->right = NULL;
+    return node;
+}
+
+// 从值到中序下标的映射表。用的时候记得加 1000。
+size_t in_positions[2001];
+
+// post 从下标 post_begin 开始、长为 n 的子数组是当前要处理的。
+// in 从下标 in_begin 开始、长为 n 的子数组是当前要处理的。
+tree_node_t* from_post_in_internal(
+    const int* post, size_t post_begin,
+    const int* in, size_t in_begin,
+    size_t n)
+{
+    if (n == 0) {
+        // 空树。
+        return NULL;
+    }
+    const size_t post_end = post_begin + n;
+    const size_t in_end = in_begin + n;
+    const int root = post[post_end - 1];
+    const size_t root_i_abs = in_positions[root + 1000];
+    assert(in_begin <= root_i_abs);
+    assert(root_i_abs < in_end);
+    const size_t root_i = root_i_abs - in_begin;
+    tree_node_t* const node = make_node(root);
+    node->left = from_post_in_internal(
+        post, post_begin,
+        in, in_begin,
+        root_i
+    );
+    node->right = from_post_in_internal(
+        post, post_begin + root_i,
+        in, in_begin + root_i + 1,
+        n - 1 - root_i
+    );
+    return node;
+}
+
+tree_node_t* from_post_in(const int* post, const int* in, size_t n)
+{
+    // 事先把每个值在中序中的位置记下来，避免每次递归都线性查找
+    for (size_t i = 0; i < n; ++i) {
+        in_positions[in[i] + 1000] = i;
+    }
+    return from_post_in_internal(post, 0, in, 0, n);
+}
+
+void print_pre_order(const tree_node_t* node)
+{
+    if (node == NULL) {
+        return;
+    }
+    printf("%d ", node->value);
+    print_pre_order(node->left);
+    print_pre_order(node->right);
+}
+
+void print_level_order(const tree_node_t* root)
+{
+    // 用数组模拟队列。n <= 1000，所以长度 1000 的数组就够用了。
+    // 甚至不用实现循环队列了。
+    const tree_node_t* queue[1000];
+    size_t head = 0;
+    size_t tail = 0;
+    queue[tail++] = root;
+    while (head < tail) {
+        const tree_node_t* const node = queue[head++];
+        printf("%d ", node->value);
+        if (node->left) {
+            queue[tail++] = node->left;
+        }
+        if (node->right) {
+            queue[tail++] = node->right;
+        }
+    }
+}
+
+int main(void)
+{
+    size_t n;
+    scanf("%zu", &n);
+    int post[1000];
+    int in[1000];
+    for (size_t i = 0; i < n; ++i) {
+        scanf("%d", &post[i]);
+    }
+    for (size_t i = 0; i < n; ++i) {
+        scanf("%d", &in[i]);
+    }
+    tree_node_t* const root = from_post_in(post, in, n);
+    print_pre_order(root);
+    putchar('\n');
+    print_level_order(root);
+    putchar('\n');
+}
+```
 
 C++：
 
@@ -113,6 +233,7 @@ public:
         const std::vector<T>& post, const std::vector<T>& in)
     {
         assert(post.size() == in.size());
+        // 事先把每个值在中序中的位置记下来，避免每次递归都线性查找
         std::unordered_map<T, vector_length_t> in_positions{};
         for (vector_length_t i = 0; i < post.size(); ++i) {
             in_positions[in[i]] = i;
@@ -131,6 +252,7 @@ private:
         const std::unordered_map<T, vector_length_t>& in_positions)
     {
         if (n == 0) {
+            // 空树。
             return nullptr;
         }
         const vector_length_t post_end = post_begin + n;
