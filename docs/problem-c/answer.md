@@ -112,7 +112,8 @@ int compare_int(const void* a, const void* b)
     const int y = * (const int*) b;
     // 数据范围比较小，所以其实这里可以实现成返回 x - y 而不用担心溢出。
     // 但这里还是使用显式比较和分支了。
-    // 至于为什么在 is_prime 的实现里又不考虑溢出了，那是因为前者如果考虑溢出好像不太好写。
+    // 至于为什么在 is_prime 的实现里又不考虑溢出了，
+    // 那是因为前者如果考虑溢出好像不太好写。
     if (x < y) {
         return -1;
     }
