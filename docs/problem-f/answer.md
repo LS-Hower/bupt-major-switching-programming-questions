@@ -69,10 +69,12 @@ C++：
 #include <utility>
 #include <vector>
 
+// T 是二叉树结点所存储的元素类型。
 template <typename T>
 struct TreeNode {
 private:
     using vector_length_t = typename std::vector<T>::size_type;
+
 public:
     T value;
     std::unique_ptr<TreeNode> left;
@@ -120,7 +122,7 @@ public:
 
 private:
     // post 从下标 post_begin 开始、长为 n 的子数组是当前要处理的。
-    // int 从下标 int_begin 开始、长为 n 的子数组是当前要处理的。
+    // in 从下标 in_begin 开始、长为 n 的子数组是当前要处理的。
     // C++20 起，有 std::span 可以用。
     static std::unique_ptr<TreeNode> from_post_in_internal(
         const std::vector<T>& post, vector_length_t post_begin,
