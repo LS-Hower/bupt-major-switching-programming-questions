@@ -69,7 +69,6 @@ C++：
 #include <utility>
 #include <vector>
 
-// TODO：使用 unique_ptr，改为 RAII
 template <typename T>
 struct TreeNode {
 private:
