@@ -74,13 +74,13 @@ struct tree_node_s {
 tree_node_t nodes[1000];
 size_t node_count = 0;
 
-tree_node_t* make_node(int value)
+tree_node_t* make_node(int value, tree_node_t* left, tree_node_t* right)
 {
     tree_node_t* const node = &nodes[node_count];
     ++node_count;
     node->value = value;
-    node->left = NULL;
-    node->right = NULL;
+    node->left = left;
+    node->right = right;
     return node;
 }
 
@@ -105,18 +105,19 @@ tree_node_t* from_post_in_internal(
     assert(in_begin <= root_i_abs);
     assert(root_i_abs < in_end);
     const size_t root_i = root_i_abs - in_begin;
-    tree_node_t* const node = make_node(root);
-    node->left = from_post_in_internal(
-        post, post_begin,
-        in, in_begin,
-        root_i
+    return make_node(
+        root,
+        from_post_in_internal(
+            post, post_begin,
+            in, in_begin,
+            root_i
+        ),
+        from_post_in_internal(
+            post, post_begin + root_i,
+            in, in_begin + root_i + 1,
+            n - 1 - root_i
+        )
     );
-    node->right = from_post_in_internal(
-        post, post_begin + root_i,
-        in, in_begin + root_i + 1,
-        n - 1 - root_i
-    );
-    return node;
 }
 
 tree_node_t* from_post_in(const int* post, const int* in, size_t n)
@@ -200,7 +201,7 @@ public:
     std::unique_ptr<TreeNode> left;
     std::unique_ptr<TreeNode> right;
 
-    void print_pre_order(std::ostream& os)
+    void print_pre_order(std::ostream& os) const
     {
         os << value << ' ';
         if (left) {
@@ -211,13 +212,13 @@ public:
         }
     }
 
-    void print_level_order(std::ostream& os)
+    void print_level_order(std::ostream& os) const
     {
-        std::queue<TreeNode*> q;
+        std::queue<const TreeNode*> q;
         q.emplace(this);
 
         while (!(q.empty())) {
-            TreeNode* const node = q.front();
+            const TreeNode* const node = q.front();
             q.pop();
             os << node->value << ' ';
             if (node->left) {
