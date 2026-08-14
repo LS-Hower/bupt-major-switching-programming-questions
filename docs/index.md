@@ -4,14 +4,14 @@
 
 在北京邮电大学转专业，在转入计算机学院或人工智能学院时，除了需要面试外，还需要先进行机试，也就是做几道编程题。
 
-本网站记录了 2025 年年初转入计算机学院时的 7 道机试题目（通过记忆还原），并附有本人的题解。题解使用 C 和 C++ 语言，分别使用 C99 和 C++11 标准，一般的 C 或 C++ 教程都会分别涵盖相关知识点。
+本网站记录了 2025 年年初转入计算机学院时的 7 道机试题目（通过记忆还原），并附有本人的题解。题解使用 C 和 C++ 语言，分别使用 C99 和 C++11 标准。一般的 C 或 C++ 教程都会分别涵盖相关知识点。
 
 7 道题难度基本由易到难。
 
 - 前 5 道题是学习了一门编程语言后基本都可以做出来的。
-- 后 2 道题需要一些算法与数据结构基础知识。
+- 后 2 道题需要少量算法与数据结构基础知识。
 
-点击页面左侧的导航目录，即可查看具体题目及题解。若你正在使用手机浏览本站，则你可能需要点击左上角的“三道杠”图标才能让导航目录显示出来。
+点击页面左侧的导航目录，即可查看具体题目及题解。若你正在使用手机浏览本站，则你可能需要点击页面左上角的“三道杠”图标才能让导航目录显示出来。
 
 ## 致新生
 
@@ -20,4 +20,4 @@
 ## 关于本站
 
 - 作者的 GitHub 主页： [LS_Hower](https://github.com/LS-Hower)
-- 本站的 GitHub 仓库： [LS-Hower/bupt-major-switching-programming-questions](https://github.com/LS-Hower/bupt-major-switching-programming-questions)
+- 本站的 GitHub 源代码仓库： [LS-Hower/bupt-major-switching-programming-questions](https://github.com/LS-Hower/bupt-major-switching-programming-questions)
