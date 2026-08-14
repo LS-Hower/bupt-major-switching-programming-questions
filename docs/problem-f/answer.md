@@ -89,7 +89,7 @@ size_t in_positions[2001];
 
 // post 从下标 post_begin 开始、长为 n 的子数组是当前要处理的。
 // in 从下标 in_begin 开始、长为 n 的子数组是当前要处理的。
-tree_node_t* from_post_in_internal(
+tree_node_t* tree_from_post_in_internal(
     const int* post, size_t post_begin,
     const int* in, size_t in_begin,
     size_t n)
@@ -107,12 +107,12 @@ tree_node_t* from_post_in_internal(
     const size_t root_i = root_i_abs - in_begin;
     return make_node(
         root,
-        from_post_in_internal(
+        tree_from_post_in_internal(
             post, post_begin,
             in, in_begin,
             root_i
         ),
-        from_post_in_internal(
+        tree_from_post_in_internal(
             post, post_begin + root_i,
             in, in_begin + root_i + 1,
             n - 1 - root_i
@@ -120,13 +120,13 @@ tree_node_t* from_post_in_internal(
     );
 }
 
-tree_node_t* from_post_in(const int* post, const int* in, size_t n)
+tree_node_t* tree_from_post_in(const int* post, const int* in, size_t n)
 {
     // 事先把每个值在中序中的位置记下来，避免每次递归都线性查找
     for (size_t i = 0; i < n; ++i) {
         in_positions[in[i] + 1000] = i;
     }
-    return from_post_in_internal(post, 0, in, 0, n);
+    return tree_from_post_in_internal(post, 0, in, 0, n);
 }
 
 void print_pre_order(const tree_node_t* node)
@@ -171,7 +171,7 @@ int main(void)
     for (size_t i = 0; i < n; ++i) {
         scanf("%d", &in[i]);
     }
-    tree_node_t* const root = from_post_in(post, in, n);
+    tree_node_t* const root = tree_from_post_in(post, in, n);
     print_pre_order(root);
     putchar('\n');
     print_level_order(root);
