@@ -7,13 +7,15 @@
 例如，若你使用 C 或 C++ 语言，则：
 
 - 不允许使用：
-    - `for` 、 `while` 和 `do` ，因为它们是迭代结构。
-    - `goto` 和库函数 `longjmp()` ，因为它们的能力强于迭代结构。
-    - 标准库中其他能力等于或强于迭代的设施，例如 C++ 中的 `std::for_each` 和 `std::ranges::fold_left` 。
+    - `for` 、 `while` 和 `do` ，因为它们构成迭代结构。
+    - `goto` ，因为它的能力强于迭代结构。
+    - 标准库中其他能力等于或强于迭代的设施，例如：
+        - C++ 库函数 `std::for_each()` 和 `std::ranges::fold_left()` ；
+        - C 和 C++ 库函数 `longjmp()` 。
 - 允许使用：
-    - 函数递归调用自己。
-    - `if` 、 `else` 和 `switch` ，因为它们是分支结构。
-    - `return` 和 `break` ，尽管后者是因为允许使用 `switch` 而被允许使用的。
+    - 函数递归。这包括直接和间接递归。
+    - `if` 、 `else` 和 `switch` ，因为它们构成分支结构。
+    - `return` 和 `break` （尽管后者是因为允许使用 `switch` 才被允许使用的）。
 
 ## 示例
 
