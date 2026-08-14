@@ -46,7 +46,7 @@ int main(void)
                     ((a_bits >> va) & 1)
                     && ((b_bits >> vb) & 1)))
                 {
-                    // 未满足“va 在集合 A 中，vb 在集合 b 中”这一条件
+                    // 未满足“va 在集合 A 中，vb 在集合 B 中”这一条件
                     continue;
                 }
                 weight_sum += w[va][vb];
@@ -102,7 +102,7 @@ int main()
                     ((a_bits >> va) & 1)
                     && ((b_bits >> vb) & 1)))
                 {
-                    // 未满足“va 在集合 A 中，vb 在集合 b 中”这一条件
+                    // 未满足“va 在集合 A 中，vb 在集合 B 中”这一条件
                     continue;
                 }
                 weight_sum += w[va][vb];

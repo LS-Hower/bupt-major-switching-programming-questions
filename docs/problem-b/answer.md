@@ -252,7 +252,7 @@ void print_numbers_internal(int i)
 }
 ```
 
-我们注意到在 `print_numbers_internal` 多包了一层 `print_numbers` ，是纯属多余了，所以我们直接将 `print_numbers` 去掉，再把 `print_numbers_internal` 改名成 `print_numbers` ：
+我们注意到在 `print_numbers_internal` 之外多包了一层 `print_numbers` ，是纯属多余了，所以我们直接将 `print_numbers` 去掉，再把 `print_numbers_internal` 改名成 `print_numbers` ：
 
 ```c
 void print_numbers(int i)

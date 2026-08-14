@@ -104,14 +104,13 @@ int ntmod(int a, int n)
 struct MagicSquare {
     std::vector<std::vector<int>> mat;
 
-    // 构造函数。同时
+    // 构造函数同时承担了分配内存和填入幻方内容的职责。
     MagicSquare(int n)
         : mat(n, std::vector<int>(n, 0))
     {
-        // 当前坐标
+        // 当前坐标。这里用了 x y 而不是 i j，因为循环变量叫 i 了。
         int x = 0;
         int y = (n - 1) / 2;
-        // 当前坐标。这里用了 x y 而不是 i j，因为循环变量叫 i 了。
         for (int i = 1; i <= n * n; ++i) {
             // 填数
             mat[x][y] = i;
