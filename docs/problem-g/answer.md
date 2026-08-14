@@ -35,7 +35,7 @@ int main(void)
     // 其实只需要枚举前 2^{n-1} 种情况，
     // 因为后 2^{n-1} 种情况和前面的一一对应地重复了。
     const uint32_t all_bits = (1 << n) - 1;
-    for (uint32_t a_bits = 0; a_bits < (1 << (n - 1)); ++a_bits) {
+    for (uint32_t a_bits = 0; a_bits < (1u << (n - 1)); ++a_bits) {
         const uint32_t b_bits = all_bits & ~a_bits;
 
         int weight_sum = 0;
@@ -91,7 +91,7 @@ int main()
     // 其实只需要枚举前 2^{n-1} 种情况，
     // 因为后 2^{n-1} 种情况和前面的一一对应地重复了。
     const std::uint32_t all_bits = (1 << n) - 1;
-    for (std::uint32_t a_bits = 0; a_bits < (1 << (n - 1)); ++a_bits) {
+    for (std::uint32_t a_bits = 0; a_bits < (1u << (n - 1)); ++a_bits) {
         const std::uint32_t b_bits = all_bits & ~a_bits;
 
         int weight_sum = 0;

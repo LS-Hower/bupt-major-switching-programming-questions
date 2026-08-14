@@ -191,10 +191,12 @@ out_loop:
 为了更清晰，我们将循环的主体，也就是 `int i = n;` 这一行以下的部分放入另一个函数里：
 
 ```c
+void print_numbers_internal(int i);
+
 void print_numbers(int n)
 {
     int i = n;
-    return print_numbers_internal(i);
+    print_numbers_internal(i);
 }
 
 void print_numbers_internal(int i)
@@ -215,10 +217,12 @@ out_loop:
 好了。现在可以发现，所谓的 `goto out_loop;` 其实就是 `return` ：
 
 ```c
+void print_numbers_internal(int i);
+
 void print_numbers(int n)
 {
     int i = n;
-    return print_numbers_internal(i);
+    print_numbers_internal(i);
 }
 
 void print_numbers_internal(int i)
@@ -236,10 +240,12 @@ loop:
 而 `goto loop:` 其实就是重新从本函数的开头开始执行罢了，只不过只有一处不同，那就是 `i` 的值是原本的 `i` 的值减去 `1` 。所以我们可以用一句 `print_numbers_internal(i - 1)` 取代掉这两行 `--i;` 和 `goto loop;` ：
 
 ```c
+void print_numbers_internal(int i);
+
 void print_numbers(int n)
 {
     int i = n;
-    return print_numbers_internal(i);
+    print_numbers_internal(i);
 }
 
 void print_numbers_internal(int i)

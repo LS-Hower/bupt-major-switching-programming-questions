@@ -86,7 +86,7 @@ struct TeamData {
     }
 };
 
-bool operator<(const TeamData& lhs, const TeamData rhs)
+bool operator<(const TeamData& lhs, const TeamData& rhs)
 {
     if (lhs.score > rhs.score) {
         // lhs 分数大，所以 lhs 靠前。

@@ -276,8 +276,14 @@ private:
             n - 1 - root_i,
             in_positions
         );
-        return std::make_unique<TreeNode>(
-            TreeNode{root, std::move(left), std::move(right)});
+        // C++11 还没有 std::make_unique 。这里用 new 构造。
+        return std::unique_ptr<TreeNode>(
+            new TreeNode{
+                root,
+                std::move(left),
+                std::move(right),
+            }
+        );
     }
 };
 
