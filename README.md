@@ -12,5 +12,5 @@
 
 两种触发方式：
 
-1. 命令行： `gh workflow run deploy.yml` （需安装 [GitHub CLI](https://cli.github.com/) 并登录）。
+1. 命令行： `gh workflow run deploy.yml` 。需安装 [GitHub CLI](https://cli.github.com/) 并登录。
 2. 进入仓库的 Actions 页面，选中“Deploy MkDocs”，点击“Run workflow”。

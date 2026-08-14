@@ -115,4 +115,3 @@ int main()
     std::cout << best_weight_sum << '\n';
 }
 ```
-
