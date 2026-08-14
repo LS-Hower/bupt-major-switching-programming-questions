@@ -20,8 +20,8 @@ typedef struct {
 
 int compare_team_data(const void* a, const void* b)
 {
-    const team_data_t* lhs = (const team_data_t*) a;
-    const team_data_t* rhs = (const team_data_t*) b;
+    const team_data_t * const lhs = (const team_data_t*) a;
+    const team_data_t * const rhs = (const team_data_t*) b;
 
     // 先比较分数，若分数不同则直接给出结果。
     if (lhs->score > rhs->score) {
